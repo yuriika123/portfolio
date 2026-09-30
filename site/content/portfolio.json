@@ -1,0 +1,351 @@
+{
+  "categories" : [
+    {
+      "id" : "motion",
+      "label" : "Motion"
+    },
+    {
+      "id" : "music",
+      "label" : "Music"
+    },
+    {
+      "id" : "coding",
+      "label" : "Creative Coding"
+    }
+  ],
+  "schemaVersion" : 1,
+  "works" : [
+    {
+      "categories" : [
+        "coding",
+        "motion"
+      ],
+      "description" : "カラフルなリボンのような物体が、折り重なっていくモーションです。キーボードでリボンの数（正確には折り目の数）をコントロールできるので、動画内でも増やしたり減らしたりしています。\n\nリボンが多いと、少し気持ち悪くも見えるのに、少なくなるとなぜか切なく感じてしまいました。",
+      "id" : "ribbon-dancer",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "クリエイティブコーディング",
+      "sections" : [
+
+      ],
+      "subtitle" : "Generative Motion",
+      "summary" : "カラフルなリボンのようなものが絡まっていく",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "Ribbon Dancer",
+      "tool" : "openFrameworks",
+      "videoURL" : "https://youtube.com/shorts/mYjdooB_s-A",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "coding",
+        "motion"
+      ],
+      "description" : "青から紫、ピンクにかけての半透明の球が、呼吸をするように、周期的に広がったり縮んだりします。半透明であるため、重なり混ざってできる色が、綺麗なグラフィックをつくります。\n\n3次元であり、中心を起点に回転するカメラも導入しているので、映像として見ると立体的に見えるかと思います。\n\nこの作品のスクリーンショットをアイコンに使用しています。Codex に私が書いた openFramework のコードを Web 向けに移植してもらい、このサイトのトップでも同じようなモーションが見られます。",
+      "id" : "breathing-sphere",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "クリエイティブコーディング",
+      "sections" : [
+        {
+          "body" : "青、紫、ピンクの半透明の球が重なる、アイコンに使用した作品画像。",
+          "id" : "FD21A6AA-D9D3-487F-934A-864F978B569C",
+          "imageCaption" : "",
+          "imagePath" : "/assets/works/breathing-sphere/be8a7a56-6f7b-4f87-85e4-f46fe31129d4.png",
+          "title" : "",
+          "videoPortrait" : false,
+          "videoURL" : ""
+        }
+      ],
+      "subtitle" : "Generative Motion",
+      "summary" : "半透明の球が重なり、呼吸するように広がる",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "Breathing Sphere",
+      "tool" : "openFrameworks",
+      "videoURL" : "/assets/works/breathing-sphere/4c33371f-8c7e-42cc-9531-a6729a992950.mp4",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "coding"
+      ],
+      "description" : "iOS 版 openFrameworks を使用し、iOS アプリを制作しました。\n\niPhone のカメラに映るものから、ランダムで色を拾い、画面にグラデーションができていくアプリケーションです。拾った色の（今のグラデーションへの）影響度などを、画面をスワイプすることで調整できるようにしました。",
+      "id" : "seasonal-colors",
+      "input" : "iPhone カメラ",
+      "metadata" : [
+
+      ],
+      "music" : "",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "クリエイティブコーディング",
+      "sections" : [
+        {
+          "body" : "実際の iPhone の画面を収録した映像です。葉っぱとか木とかに向けると、綺麗な色になります。",
+          "id" : "74C369D2-0F13-4DCE-AE24-DA668395DED9",
+          "imageCaption" : "",
+          "imagePath" : "",
+          "title" : "",
+          "videoPortrait" : true,
+          "videoURL" : "https://youtube.com/shorts/1zeUFYQI0Zw"
+        }
+      ],
+      "subtitle" : "iOS / Camera / Color",
+      "summary" : "iPhone のカメラで拾った色が、混ざり合うグラデーションになる",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "Seasonal Colors",
+      "tool" : "openFrameworks for iOS",
+      "videoURL" : "https://youtube.com/shorts/eEfxuexmmCs",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "coding"
+      ],
+      "description" : "この作品を制作する2年ほど前に書いた歌詞を、今の自分なりの表現方法で出力してみようと思い、制作しました。\n\nウィンドウ上でカーソルをドラッグすると、位置を追従して、カーソルの場所に1文字ずつ歌詞が配置されていきます。文脈を少し壊す目的で、歌詞は10数行ありますが、行はドラッグする度にランダムで選択されるので、全体に意味があるようなないような、不思議なグラフィックが出来上がります。",
+      "id" : "ninen",
+      "input" : "カーソル",
+      "metadata" : [
+
+      ],
+      "music" : "",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "作詞・クリエイティブコーディング",
+      "sections" : [
+
+      ],
+      "subtitle" : "Typography / Cursor Input",
+      "summary" : "カーソルの動きに沿って、自作の詩が描かれる",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "Ninen",
+      "tool" : "openFrameworks",
+      "videoURL" : "https://youtube.com/shorts/gi_agj8ypRc?",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "music"
+      ],
+      "description" : "Tennyson のサウンドパックをメインで使用して制作しました。Tennyson の楽曲特有の、独特な柔らかい音だったり、うねりのあるベースを意識しました。\n\nタイトルの「modulation」は、彼のそのような楽曲のイメージから、オートメーションやモジュレーションを多用してそうだなと思い、後者を採用しました。",
+      "id" : "modulation",
+      "input" : "LaunchPad Mini MK3",
+      "metadata" : [
+
+      ],
+      "music" : "",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "音楽制作",
+      "sections" : [
+
+      ],
+      "subtitle" : "Original Music / Indie Electronica",
+      "summary" : "インディーエレクトロニカのインストオリジナル楽曲",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "modulation",
+      "tool" : "Logic Pro",
+      "videoURL" : "https://youtu.be/o0qEmIKB6HI",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "music"
+      ],
+      "description" : "星野源の「サピエンス」をもとに制作したリミックス。既存の楽曲を Logic Pro の Stem Splitter で楽器ごとにばらばらにした上で、その素材を使用して、楽曲を再構築しました。\n\nApple Creator Studio の導入により、サブスクリプションで Logic Pro が使えるようになったため、Ableton Live を使用していた時とは違うアプローチでの楽曲制作が可能になった印象でした。",
+      "id" : "sapiens-remix",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "オリジナル：サピエンス - 星野源",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "リミックス制作",
+      "sections" : [
+
+      ],
+      "subtitle" : "Sampling Remix",
+      "summary" : "星野源「サピエンス」を使用したサンプリングリミックス",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "サピエンス - 星野源 Remix",
+      "tool" : "",
+      "videoURL" : "https://youtu.be/WxkFK3biOOA",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "coding"
+      ],
+      "description" : "Launchpad から MIDI 入力を受け付け、ウィンドウでは LaunchPad のグリッドに対応する位置に線が引かれます。また LaunchPad に MIDI を返すことで、同時に LaunchPad の光もコントロールしています。\n\nLaunchPad もウィンドウ上の線も、少しずつ消えていくようにし、実際に同期しているという感覚をより強めようと試みました。",
+      "id" : "launchpad-light-sketch",
+      "input" : "Launchpad Mini MK3 / MIDI",
+      "metadata" : [
+
+      ],
+      "music" : "",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "クリエイティブコーディング",
+      "sections" : [
+
+      ],
+      "subtitle" : "MIDI / Graphics",
+      "summary" : "LaunchPad からの MIDI 入力で、画面にお絵かき",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "LaunchPad Light Sketch",
+      "tool" : "openFrameworks",
+      "videoURL" : "https://youtube.com/shorts/Z_6einHp0-A",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "coding",
+        "motion"
+      ],
+      "description" : "星野源「Star」に合わせて、歌詞の1文字ずつ降り、物理演算によってブロックのように積み重なっていくタイポグラフィの実験です。openFrameworks を用いて、1つの文字を1つの長方形として扱い、それらに対し、重力や反発力などの物理演算を行なっています。\n\nこの時はフォントの読み込み方法がわからず、結果、テキストを1文字ずつPNGで書き出し、ナンバリング。それを順番に読み込んで実現しました。",
+      "id" : "drops-of-letters",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "Star - 星野源",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "クリエイティブコーディング",
+      "sections" : [
+
+      ],
+      "subtitle" : "Typography / Physics",
+      "summary" : "歌詞が一文字ずつ降り、物理演算によって積み重なる",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "Drops of Letters",
+      "tool" : "openFrameworks",
+      "videoURL" : "https://youtube.com/shorts/xbIv9uOSimY",
+      "year" : "2025"
+    },
+    {
+      "categories" : [
+        "motion"
+      ],
+      "description" : "蓮沼執太フィルの「Meeting Place」に合わせた、Cavalryによるリリックモーションビデオ。つくった時期、蓮沼執太フィルにとてもハマっていて、その中でもこの曲は、環ROYさんのラップがとても印象的でした。\n\n以前、カネコアヤノの「明け方」で同じような映像をつくった時は、歌詞のスピードもゆったりしていたので、打って変わって、ラップに対して文字を配置するのはとても楽しかったです。\n\nまた前回は白と黒での表現でしたが、今回は他の色も使いつつ、ただ抽象的に表現することを意識しました。",
+      "id" : "meeting-place",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "Meeting Place - 蓮沼執太フィル",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "モーションデザイン",
+      "sections" : [
+        {
+          "body" : "「Meeting Place」の動画では、黄色い円で螺旋を表現する箇所を Cavalry で作成したのですが、後ほど同じような動きを openFrameworks でも実装しました。",
+          "id" : "16B5AC4A-F644-48BA-AD3F-B355D2D18A5E",
+          "imageCaption" : "",
+          "imagePath" : "",
+          "title" : "",
+          "videoPortrait" : true,
+          "videoURL" : "https://youtube.com/shorts/WrjawCaOwH4"
+        }
+      ],
+      "subtitle" : "Lyric Motion Design",
+      "summary" : "抽象的な表現で、歌詞を具体化する",
+      "thumbnailSize" : "hqdefault",
+      "thumbnailURL" : "/assets/works/meeting-place/d0f98631-e526-40ce-af73-c2d7af1315fd.jpg",
+      "title" : "Meeting Place - 蓮沼執太フィル",
+      "tool" : "Cavalry",
+      "videoURL" : "/assets/works/meeting-place/2dedcbb2-0932-4ba5-9a8d-d036f6f32a1b.mp4",
+      "year" : "2025"
+    },
+    {
+      "categories" : [
+        "motion"
+      ],
+      "description" : "Cavalry に慣れることと機能の把握を目的に、とにかく8つ違った雰囲気のモーションデザインをつくってみようと思い製作しました。クラムボンの「ピリオドとプレリュード」のサビを2小節で8つに区切り、それぞれのモーションを割り当てました。ただ、歌詞とモーションに関係はないです。",
+      "id" : "period-and-prelude",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "ピリオドとプレリュード - クラムボン",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "モーションデザイン",
+      "sections" : [
+
+      ],
+      "subtitle" : "Motion Design",
+      "summary" : "2Dモーションデザイン8本ノック",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "ピリオドとプレリュード - クラムボン",
+      "tool" : "Cavalry",
+      "videoURL" : "https://youtu.be/4U0ZlMaoSKM",
+      "year" : "2025"
+    },
+    {
+      "categories" : [
+        "motion"
+      ],
+      "description" : "カネコアヤノの「明け方」に合わせた、Cavalry によるリリックモーションビデオ。歌詞をぱらぱらと一文字ずつ出現させ、そこに抽象的な図形を組み合わせることで、歌詞を視覚化することを目指しました。",
+      "id" : "akegata",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "明け方 - カネコアヤノ",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "モーションデザイン",
+      "sections" : [
+        {
+          "body" : "Cavalry を使うのが初めてだったので、こんな機能があるのか、と手探りで進めました。",
+          "id" : "51305CE8-52DC-488C-98D0-44761BCC4AE7",
+          "imageCaption" : "Cavalryで制作した「明け方」の制作画面。",
+          "imagePath" : "/assets/works/akegata/11d46c34-e36d-48d9-a8b8-b9259323bcf3.png",
+          "title" : "",
+          "videoPortrait" : false,
+          "videoURL" : ""
+        }
+      ],
+      "subtitle" : "Lyric Motion Design",
+      "summary" : "文字と抽象的な形で、歌詞を具体化する",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "明け方 - カネコアヤノ",
+      "tool" : "Cavalry",
+      "videoURL" : "https://youtu.be/EeHGhbozpgE",
+      "year" : "2025"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "yuta-okuno-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "generate": "node scripts/generate-pages.js",
+    "predev": "npm run generate",
+    "prebuild": "npm run generate",
+    "test": "node --test scripts/*.test.js"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "image-size": "^2.0.4",
+    "sharp": "^0.35.5",
+    "vite": "^7.1.7"
+  }
+}

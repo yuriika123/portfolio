@@ -1,0 +1,8 @@
+node_modules/
+site/dist/
+site/works/
+site/.image-variants.json
+site/public/assets/optimized/
+site/.editor-backups/
+*.editor-tmp
+.DS_Store
