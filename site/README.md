@@ -1,69 +1,115 @@
 # Yuta Okuno — ポートフォリオサイト
 
-Three.jsのトップ展示、作品一覧とカテゴリーフィルター、作品別ページを持つ静的サイトです。
+Three.jsのトップ展示、作品一覧・カテゴリーフィルター、作品別ページを持つ静的サイトです。Viteでビルドし、GitHub ActionsからGitHub Pagesへ公開します。
 
-## 開発・ビルド
+公開用リポジトリにはサイト本体だけを含みます。Mac用Portfolio Editorと元プロジェクトの履歴・下書き・未使用素材は別途ローカルで保管します。以下のアプリ操作・Swiftテストは、アプリを含む元プロジェクトで利用する手順です。
+
+## セットアップ・開発・ビルド
+
+Node.js・npmが必要です。GitHub Actionsと同じNode.js 24系を基準にします。リポジトリのルートから実行します。
 
 ```sh
 cd site
 npm ci
 npm run dev
-npm run build
 ```
 
-`npm run dev` と `npm run build` の前に、作品データから一覧と作品ページを生成します。
-公開用ファイルは `dist/` に出力されます。生成される `index.html`・`works/`・`dist/` は編集せず、テンプレートと作品データを変更してください。
+表示されたURLをブラウザで開きます。現在の公開設定では `/portfolio/` のサブパスを使います。開発サーバーを終了してから、必要に応じて次を実行します。
 
-## 作品の管理
+```sh
+npm test
+npm run build
+npm run preview
+```
 
-Mac用のPortfolio Editorから編集します。データ本体は `content/portfolio.json` です。
-配列の上から順に掲載し、`published: false` の作品は下書きとして保存します。
-`id` は `/works/作品名/` の名前です。カテゴリーは複数選択できます。
-追加セクションは見出し・画像・関連動画・説明文の順に表示します。
-再生ボタンを押すとYouTubeを読み込みます。YouTube側で埋め込みが拒否された場合は、エラー案内と直接リンクを表示します。
+`npm run dev` と `npm run build` の前にページを自動生成します。`npm run preview` は既存の `dist/` を配信するため、変更後は先にビルドしてください。`npm run generate` で生成だけを実行できます。
 
-データを直接編集した場合は `npm run generate` でHTMLを更新します。
-プロフィール・SNS・連絡先は `templates/home.html`、共通ナビゲーションは `templates/header.html` と `templates/footer.html`、作品ページの外枠は `templates/work.html`、レイアウトは `src/style.css` にあります。
+## 編集元と生成物
+
+| 場所 | 役割 |
+| --- | --- |
+| `content/portfolio.json` | 作品・カテゴリー・セクション。作品編集の正本 |
+| `content/publishing.json` | GitHub保存先と公開URL |
+| `templates/home.html` | トップページ、プロフィール・About・SNS・連絡先 |
+| `templates/header.html`、`templates/footer.html` | 共通ナビゲーション・フッター |
+| `templates/work.html` | 作品ページの外枠 |
+| `src/style.css` | レイアウト・見た目 |
+| `src/main.js` | フィルター、戻るリンク、動画の読み込み・エラー表示 |
+| `src/sphere.js` | トップのThree.jsモーション |
+| `public/assets/works/` | 取り込み済みの画像・公開用MP4・ポスター |
+| `scripts/generate-pages.js` | データ検証、ページ・sitemap・robots生成 |
+| `scripts/images.js` | 画像の寸法取得・WebP変換・キャッシュ |
+| `scripts/publishing.js` | 公開URL・ベースパスの解決 |
+| `scripts/seo.js` | canonical・OGP・構造化データ等 |
+| `scripts/preview-server.js` | Macアプリ用のMP4 Range対応プレビュー配信 |
+| `vite.config.js` | 複数ページのビルドと公開素材の選別 |
+
+`index.html`、`works/`、`public/sitemap.xml`、`public/robots.txt` は生成物です。テンプレート・作品データ・公開設定を編集して生成し直してください。`works/.generated-pages.json` で生成ページを管理し、削除・URL変更された作品の旧ページを除去します。
+
+`dist/` は公開用ビルド出力です。`public/assets/optimized/` と `.image-variants.json` は画像変換キャッシュです。生成出力・キャッシュを直接修正しても再生成で失われます。ローカル元プロジェクトでは `index.html` はGitで追跡し、`works/`・`dist/`・画像変換キャッシュは無視しています。
+
+## 作品データとページ
+
+元プロジェクトではPortfolio Editorから編集します。JSONを直接変更した場合は `npm run generate` またはビルドで検証・生成してください。アプリを同時に開いている場合は再読み込みが必要です。
+
+- `schemaVersion` は現在1。カテゴリーと作品を保持する。
+- 配列の上から掲載し、カテゴリーは複数指定できる。
+- `id` は `/works/<id>/` の名前。変更すると旧生成ページを削除し、リダイレクトは作らない。
+- `published: false` は下書き。掲載作品はタイトル・カテゴリー・有効な動画が必要。
+- 追加セクションは見出し・画像・関連動画・説明文の順に表示する。
+
+本文は空行で段落を分けます。キャプションは画像説明と代替テキストに使います。ローカル画像の寸法は自動取得し、外部画像は固定比率の枠を確保します。一覧の縦動画は4:3の枠の中に縦の構図を残して表示します。
+
+## YouTube・ローカル動画・サムネイル
+
+`videoURL` はYouTube URLまたは取り込み済みの `/assets/works/.../*.mp4` を使います。任意の外部動画URLを埋め込む構成ではありません。追加セクションの関連動画も同じ方式です。
+
+YouTubeは再生ボタンを押してから埋め込みを読み込みます。埋め込みが拒否された場合はエラー案内と直接リンクを表示します。ローカル動画はブラウザの標準コントロールで再生します。
+
+元プロジェクトのPortfolio EditorではMOV・MP4・M4VをAVFoundationで公開用MP4（最大1080p、H.264／AAC）へ変換します。先頭フレームの `*-poster.jpg` と縦横判定も作成し、元ファイルは変更しません。変換できない形式はエラーになります。取り込んだMP4とポスターを一緒に保管してください。
+
+作品の `thumbnailURL` でカスタム画像を設定できます。未指定ならYouTubeのサムネイルまたは自動生成ポスターを使います。アプリは動画の差し替え時にカスタムサムネイルを保持します。カスタム画像は一覧とローカル動画のポスターに反映します。
+
+Macアプリのプレビューは動画のMIMEとHTTP Rangeに対応し、再生・途中へのシークができます。再生確認はHTTPサーバー経由で行ってください。
+
+## 画像の軽量化と公開素材
+
+ローカルPNG・JPEG・WebPはページ生成時に480・960・1440pxを上限とするWebPを作り、`srcset` で表示幅に応じて読み込みます。小さい画像は拡大しません。元画像は編集用に保持します。SVG・GIF・アニメーション画像・外部画像はそのまま使います。
+
+本番ビルドは `public/` 全体をコピーせず、掲載作品が参照する動画・画像の変換版と、favicon・sitemap・robotsなど必要な共通ファイルだけを出力します。元の静止画像は原則そのまま配信せず、OGPも公開される変換版を参照します。下書き専用・未使用素材は `dist/` に含みません。公開作品と共有する素材は配信されます。
+
+ブラウザへ作品JSON自体は配信せず、生成済みHTMLとフィルターに必要なカテゴリーIDを使います。公開用Gitには再ビルドに必要な掲載作品JSONと参照元素材を含みます。「GitHubに含めるソース」と「ブラウザへ配信するdist」は別です。
 
 ## トップのモーション
 
-`src/sphere.js` は元のopenFrameworks作品をThree.js / WebGLに移したものです。
-350個の球、配置式、周期、色域、不透明度、回転を元にしています。ノイズ、乱数の種、初期の向きは元作品と異なります。
-画面外では描画を休止し、動きを減らす設定・手動停止・WebGL非対応時の静止画表示に対応します。
-元作品のソースとアドオンは `../reference/oF/` にあります。
+`src/sphere.js` は元のopenFrameworks作品をThree.js／WebGLに移したものです。350個の球、配置式、周期、色域、不透明度、回転を元にし、ノイズ・乱数の種・初期の向きは元作品と異なります。
 
-GitHub Pagesの公開構成は末尾を参照してください。
+画面外では描画を休止します。動きを減らすOS設定、手動停止、WebGL非対応時の静止画表示に対応しています。元ソースとアドオンは編集用元プロジェクトの `reference/oF/` にあり、サイト専用の公開リポジトリには含まれません。
 
-## 検索エンジン向け設定
+## 公開URL・サブパス・SEO
 
-独自ドメイン取得前の公開URLは `https://yuriika123.github.io/portfolio/` です。`scripts/seo.js` で、氏名・活動名・SNS・canonical・OGP・構造化データを管理します。
-プロフィールには Yuta Okuno、奥野 雄太、yuriika、yuriika123 を表示しています。
-`npm run generate` で、掲載中の作品だけを含む `public/sitemap.xml` と `public/robots.txt` を自動生成します。
-GitHub Pagesへ公開した後、Google Search Consoleでドメインの所有権を確認し、`https://yuta-okuno.me/sitemap.xml` を送信してください。
-本番の独自ドメインがまだ接続されていない間は、検索への反映を確認できません。検索への掲載・順位は保証されません。
+現在の設定は `content/publishing.json` の `repository: yuriika123/portfolio` と `siteURL: https://yuriika123.github.io/portfolio` です。生成処理は末尾スラッシュとベースパスを解決し、ページ・画像・動画・フィルター後の戻るリンク・OGP・sitemapを `/portfolio/` に合わせます。
 
-## 公開データと画像
+環境変数 `SITE_URL` があればJSONより優先します。GitHub Actionsではconfigure-pagesが返す実際の `base_url` を渡します。独自ドメインのルートに移す場合、Mac内の設定も `https://yuta-okuno.me` に変更してください。Viteのソース参照はVite側で変換し、生成HTMLの公開素材・リンクは生成処理がベースパスを付けます。
 
-ブラウザに作品JSONは配信せず、カテゴリーIDだけをHTMLに出力します。本番ビルドには掲載中の作品が参照するローカル画像と共通画像のみを含めます。下書き専用・未使用の画像はMac内に保持し、`dist/` にはコピーしません（公開作品と共有する画像は配信されます）。公開時は必ず最新の `dist/` を使用してください。
+`scripts/seo.js` は氏名・活動名・SNS・canonical・OGP・構造化データを管理します。`npm run generate` で掲載作品だけを含むsitemapとrobotsを生成します。URL変更後は再生成・ビルドし、canonicalとsitemapを確認してください。
 
-追加画像の寸法はビルド時に自動取得します。外部URLの画像には固定比率の枠を確保します。キャプションは画像説明と代替テキストに使います。一覧の縦動画は4:3の枠の中に縦の構図を残して表示します。
-
-Swiftアプリとの保存・生成・ビルドの統合テストは `cd ../PortfolioEditor && swift test` で実行できます。先に `npm ci` でサイト依存を用意してください。
-
-## 動画ファイルと画像の軽量化
-
-Portfolio Editorの「動画ファイルを選ぶ…」からMOV・MP4・M4Vを取り込めます。MacのAVFoundationで公開用MP4（最大1080p）に変換し、先頭フレームのサムネイルと縦横判定を自動作成します。元ファイルは変更しません。追加セクションにも「関連動画ファイルを選ぶ…」があります。変換できない形式ではエラーを表示し、取り込みを取り消します。
-
-作品データの `videoURL` にはYouTube URLまたは取り込み済みの `/assets/works/.../*.mp4` が入ります。動画本体と `*-poster.jpg` はセットで管理してください。動画は再生操作後に読み込み、ブラウザの標準コントロールで再生します。本番出力には掲載中の作品が使う動画のみを含めます。
-
-ローカルのPNG・JPEG・WebPは生成時に480・960・1440pxを上限とするWebP画像に変換し、画面幅に応じて読み込みます（小さい画像は拡大しません）。元画像は編集用に保持し、公開用には変換画像だけを含めます。SVG・GIF・アニメーション画像・外部画像はそのままです。生成画像は `public/assets/optimized/`、対応表は `.image-variants.json` に保存され、Git管理から除外します。OGPも公開される変換画像を参照します。
-
-Portfolio EditorのプレビューはMP4の動画形式とHTTP Rangeリクエストに対応し、再生・途中へのシークができます。配信処理の回帰テストは `npm test` で実行します。動画の差し替え時にも、選択済みのカスタムサムネイルを保持します。
+検索サービスへの登録には、その時点で実際に公開しているURLとsitemapを使います。現在のsitemapは `https://yuriika123.github.io/portfolio/sitemap.xml`、独自ドメイン移行後は `https://yuta-okuno.me/sitemap.xml` になる想定です。独自ドメインの取得自体は検索登録の前提ではありません。検索への掲載・順位は保証されません。
 
 ## GitHub Pagesへの公開
 
-`.github/workflows/pages.yml` がmainへのpushで `npm ci`・テスト・ビルドを実行し、掲載作品だけを含む `site/dist` をPagesへ配信します。リポジトリのPagesのSourceはGitHub Actionsです。Portfolio Editorの「GitHub・公開」でリポジトリ作成・認証・設定・アップロードを操作できます。
+リポジトリルートの `.github/workflows/pages.yml` は `main` へのpushまたは手動実行で動きます。Node.js 24で `npm ci` → `npm test` → `npm run build` を実行し、`site/dist/` をPagesへ配信します。PagesのSourceはGitHub Actionsです。
 
-現在の設定は `content/publishing.json` にあります。独自ドメイン取得前のURLは `https://yuriika123.github.io/portfolio/` です。生成ページ・画像・カテゴリー移動・動画・OGP・sitemapはこのサブパスに対応します。ローカルプレビューも `/portfolio/` から開きます。独自ドメインのルートへ移す場合は設定の `siteURL` を変更してください。本番のActionsではconfigure-pagesの `base_url` を `SITE_URL` に渡すため、GitHubの公開先に合わせて生成します。まだ取得していない独自ドメイン用のCNAMEは追加していません。
+元プロジェクトのPortfolio Editorは、認証、ローカルコミット、サイト専用書き出し、必要なら公開リポジトリ作成、push、Pages設定、公開開始をGUIで行います。公開用Gitは元プロジェクトとは独立した `.github-publish-workspace/` にあり、アプリや元のGit履歴は送信しません。この公開用フォルダは直接編集せず、元プロジェクトを編集して書き出します。
 
-GitHubへのアップロードにはサイト専用のGit履歴を使います。編集アプリ、Mac内の元リポジトリの履歴、下書き、未使用の素材は送信しません。
+独自ドメインはGitHubのSettings → Pagesとドメイン取得先のDNSで設定します。リポジトリ名が `portfolio` でも `https://yuta-okuno.me/` に接続できます。未取得のドメイン向けCNAMEは追加していません。設定手順は[GitHub公式ドキュメント](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)を参照してください。
+
+アップロード完了とデプロイ完了は別です。GitHub Actionsまたはアプリの「公開状況を確認」で結果を確認し、実際の公開URLでトップ・作品ページ・画像・動画を確認します。
+
+## 検証と切り分け
+
+`npm test` はプレビューサーバーの動画Range配信、サブパス、公開URLとSEOリンクを確認します。`npm run build` はデータ検証・ページ生成・画像変換・公開素材の選別まで実行します。
+
+アプリを含む元プロジェクトでは、サイト依存を用意した上で `cd ../PortfolioEditor && swift test` を実行すると、保存・素材取り込み・サイト専用公開の統合テストも実行できます。サイト専用の公開リポジトリではSwiftテストは実行しません。
+
+表示が更新されない場合は編集元を確認して再生成・ビルドします。画像・動画の404は参照パスと `siteURL` のベースパス、Pagesの失敗はActionsのログを確認してください。下書きが見えない場合は `published` と掲載条件を確認します。素材を手動削除する前には、掲載作品・下書き双方の参照とバックアップを確認してください。
