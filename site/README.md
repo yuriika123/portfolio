@@ -14,7 +14,7 @@ npm ci
 npm run dev
 ```
 
-表示されたURLをブラウザで開きます。現在の公開設定では `/portfolio/` のサブパスを使います。開発サーバーを終了してから、必要に応じて次を実行します。
+表示されたURLをブラウザで開きます。現在の公開設定ではルート `/` を使います。開発サーバーを終了してから、必要に応じて次を実行します。
 
 ```sh
 npm test
@@ -88,13 +88,13 @@ Macアプリのプレビューは動画のMIMEとHTTP Rangeに対応し、再生
 
 ## 公開URL・サブパス・SEO
 
-現在の設定は `content/publishing.json` の `repository: yuriika123/portfolio` と `siteURL: https://yuriika123.github.io/portfolio` です。生成処理は末尾スラッシュとベースパスを解決し、ページ・画像・動画・フィルター後の戻るリンク・OGP・sitemapを `/portfolio/` に合わせます。
+現在の設定は `content/publishing.json` の `repository: yuriika123/portfolio` と `siteURL: https://yuta-okuno.me` です。生成処理は末尾スラッシュとベースパスを解決し、ページ・画像・動画・フィルター後の戻るリンク・OGP・sitemapをルート `/` に合わせます。
 
-環境変数 `SITE_URL` があればJSONより優先します。GitHub Actionsではconfigure-pagesが返す実際の `base_url` を渡します。独自ドメインのルートに移す場合、Mac内の設定も `https://yuta-okuno.me` に変更してください。Viteのソース参照はVite側で変換し、生成HTMLの公開素材・リンクは生成処理がベースパスを付けます。
+環境変数 `SITE_URL` があればJSONより優先します。GitHub Actionsではconfigure-pagesが返す実際の `base_url` を渡します。Mac内の公開設定も `https://yuta-okuno.me` に設定済みです。Viteのソース参照はVite側で変換し、生成HTMLの公開素材・リンクは生成処理がベースパスを付けます。
 
 `scripts/seo.js` は氏名・活動名・SNS・canonical・OGP・構造化データを管理します。`npm run generate` で掲載作品だけを含むsitemapとrobotsを生成します。URL変更後は再生成・ビルドし、canonicalとsitemapを確認してください。
 
-検索サービスへの登録には、その時点で実際に公開しているURLとsitemapを使います。現在のsitemapは `https://yuriika123.github.io/portfolio/sitemap.xml`、独自ドメイン移行後は `https://yuta-okuno.me/sitemap.xml` になる想定です。独自ドメインの取得自体は検索登録の前提ではありません。検索への掲載・順位は保証されません。
+検索サービスへの登録には、その時点で実際に公開しているURLとsitemapを使います。sitemapは `https://yuta-okuno.me/sitemap.xml`、robotsは `https://yuta-okuno.me/robots.txt` です。独自ドメインの取得自体は検索登録の前提ではありません。検索への掲載・順位は保証されません。
 
 ## GitHub Pagesへの公開
 
@@ -102,7 +102,7 @@ Macアプリのプレビューは動画のMIMEとHTTP Rangeに対応し、再生
 
 元プロジェクトのPortfolio Editorは、認証、ローカルコミット、サイト専用書き出し、必要なら公開リポジトリ作成、push、Pages設定、公開開始をGUIで行います。公開用Gitは元プロジェクトとは独立した `.github-publish-workspace/` にあり、アプリや元のGit履歴は送信しません。この公開用フォルダは直接編集せず、元プロジェクトを編集して書き出します。
 
-独自ドメインはGitHubのSettings → Pagesとドメイン取得先のDNSで設定します。リポジトリ名が `portfolio` でも `https://yuta-okuno.me/` に接続できます。未取得のドメイン向けCNAMEは追加していません。設定手順は[GitHub公式ドキュメント](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)を参照してください。
+独自ドメインはGitHubのSettings → Pagesとドメイン取得先のDNSで設定します。リポジトリ名が `portfolio` でも `https://yuta-okuno.me/` に接続できます。GitHub Actions方式ではCNAMEファイルは不要です。設定手順は[GitHub公式ドキュメント](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)を参照してください。
 
 アップロード完了とデプロイ完了は別です。GitHub Actionsまたはアプリの「公開状況を確認」で結果を確認し、実際の公開URLでトップ・作品ページ・画像・動画を確認します。
 
