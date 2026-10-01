@@ -20,3 +20,15 @@ for (const [url, base] of [['https://yuriika123.github.io/portfolio', '/portfoli
     assert.ok(result.seo.includes(`content="${url}/assets/icon.jpg"`));
   });
 }
+
+test('Pages HTTP domain during certificate provisioning generates HTTPS URLs', () => {
+  const source = `import { siteURL, basePath } from ${JSON.stringify(new URL('./publishing.js', import.meta.url).href)};
+    console.log(JSON.stringify({ siteURL, basePath }));`;
+  const result = JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', source], {
+    env: { ...process.env, SITE_URL: 'http://yuta-okuno.me', GITHUB_PAGES: 'true' }, encoding: 'utf8',
+  }));
+  assert.deepEqual(result, { siteURL: 'https://yuta-okuno.me', basePath: '/' });
+  assert.throws(() => execFileSync(process.execPath, ['--input-type=module', '-e', source], {
+    env: { ...process.env, SITE_URL: 'http://yuta-okuno.me', GITHUB_PAGES: 'false' }, stdio: 'pipe',
+  }));
+});

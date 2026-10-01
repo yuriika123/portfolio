@@ -1,6 +1,10 @@
 import { readFileSync } from 'node:fs';
 const settings = JSON.parse(readFileSync(new URL('../content/publishing.json', import.meta.url), 'utf8'));
-export const siteURL = (process.env.SITE_URL || settings.siteURL).replace(/\/+$/, '');
+const configuredURL = (process.env.SITE_URL || settings.siteURL).replace(/\/+$/, '');
+// Pages may report HTTP while the custom domain's certificate is provisioning.
+export const siteURL = process.env.GITHUB_PAGES === 'true'
+  ? configuredURL.replace(/^http:\/\//, 'https://')
+  : configuredURL;
 const parsed = new URL(siteURL);
 if (parsed.protocol !== 'https:' || parsed.search || parsed.hash || parsed.username || parsed.password) throw new Error('Publishing URL must be an HTTPS site URL.');
 export const basePath = parsed.pathname.replace(/\/+$/, '') + '/';
