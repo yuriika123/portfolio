@@ -17,6 +17,33 @@
   "works" : [
     {
       "categories" : [
+        "coding"
+      ],
+      "description" : "高速フーリエ変換のアドオンを使用し、リアルタイムで音楽を周波数ごとの大きさに変換して、その内の低音部分に反応して図形が現れます。\n\n図形の形や位置、大きさなどはランダム。かつ1フレームずつ座標が少しだけ動いたり、回転したりすることで、幾何学的な図形に不規則な動きを取り入れています。\n\nサカナクションのライブツアー、“透明” に行ってきて、サカナクション熱が冷めぬ内につくりました。",
+      "id" : "tea-pillar",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "茶柱 - サカナクション",
+      "portrait" : true,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "クリエイティブコーディング",
+      "sections" : [
+
+      ],
+      "subtitle" : "Sound Visualization",
+      "summary" : "低音に反応して現れる図形たち",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "Tea Pillar",
+      "tool" : "openFrameworks / ofxFft",
+      "videoURL" : "https://youtube.com/shorts/nATHHSXPqg0",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
         "coding",
         "motion"
       ],
@@ -227,7 +254,7 @@
         "coding",
         "motion"
       ],
-      "description" : "星野源「Star」に合わせて、歌詞の1文字ずつ降り、物理演算によってブロックのように積み重なっていくタイポグラフィの実験です。openFrameworks を用いて、1つの文字を1つの長方形として扱い、それらに対し、重力や反発力などの物理演算を行なっています。\n\nこの時はフォントの読み込み方法がわからず、結果、テキストを1文字ずつPNGで書き出し、ナンバリング。それを順番に読み込んで実現しました。",
+      "description" : "星野源「Star」に合わせて、歌詞が1文字ずつ降り、物理演算によってブロックのように積み重なっていくタイポグラフィの実験です。openFrameworks を用いて、1つの文字を1つの長方形として扱い、それらに対し、重力や反発力などの物理演算を行なっています。\n\nこの時はフォントの読み込み方法がわからず、結果、テキストを1文字ずつPNGで書き出し、ナンバリング。それを順番に読み込んで実現しました。",
       "id" : "drops-of-letters",
       "input" : "",
       "metadata" : [
