@@ -42,6 +42,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid #8f45e5; outline-offs
 /* Exhibition catalogue */
 [hidden] { display: none !important; }
 .header-right { display: flex; align-items: center; gap: 32px; }
+.header-social { display: flex; align-items: center; gap: 4px; }
+.header-social a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; }
+.header-social a:hover { color: #8345c6; background: #e7e2ec; }
+.header-social svg { display: block; }
 .header-nav { font-size: var(--text-ui); }
 .header-nav a { padding: 10px 0; }
 .header-nav a:hover, .back-to-works:hover, .youtube-link:hover { color: #8345c6; }
@@ -124,9 +128,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid #8f45e5; outline-offs
 /* Mobile exhibition: readable captions, larger works and comfortable controls. */
 @media (max-width: 767px) {
   :root { --muted: #626262; }
-  .site-header { min-height: 88px; height: auto; padding: 16px 20px; gap: 14px; align-items: center; }
+  .site-header { min-height: 88px; height: auto; padding: 12px 20px; display: grid; grid-template-columns: 1fr auto; gap: 0 14px; align-items: center; }
   .wordmark { font-size: 1.25rem; white-space: nowrap; }
-  .header-right { gap: 0; }
+  .header-right { display: contents; }
+  .header-social { grid-column: 2; grid-row: 1; }
+  .header-nav { grid-column: 1 / -1; grid-row: 2; }
   .header-right .header-note { display: none; }
   .header-nav { gap: 18px; font-size: var(--text-ui); }
   .header-nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 10px 0; }
@@ -181,7 +187,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid #8f45e5; outline-offs
   .contact-dm { margin-top: 20px; }
 }
 @media (max-width: 359px) {
-  .site-header { flex-direction: column; align-items: flex-start; gap: 4px; padding-block: 17px 8px; }
   .header-nav { gap: 24px; }
   .motion-toggle { padding-left: 0; }
   .work-filters { column-gap: 16px; }

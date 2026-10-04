@@ -1,7 +1,7 @@
 import { siteURL, publicPath } from './publishing.js';
 export { siteURL };
 export const siteName = 'Yuta Okuno';
-export const homeDescription = 'Yuta Okuno（奥野 雄太）、yuriika / yuriika123 のポートフォリオ。音・光・コードを組み合わせたモーションデザイン、音楽、クリエイティブコーディングの作品を紹介しています。';
+export const homeDescription = '映像・音・光・コードを垣根なく組み合わせる。映像・音楽作品を制作するYuta Okuno（奥野 雄太 / yuriika）のポートフォリオ。モーションデザイン、音楽、クリエイティブコーディングの作品を紹介しています。';
 const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const person = {
   '@type': 'Person', '@id': `${siteURL}/#person`, name: 'Yuta Okuno',
