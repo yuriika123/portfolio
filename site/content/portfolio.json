@@ -17,6 +17,60 @@
   "works" : [
     {
       "categories" : [
+        "music"
+      ],
+      "description" : "2026年の5月ごろ、Teleの曲を聴き始め、季節や出会いも相まって、彼は自分の中で特別なアーティストの1人になりました。\n\nその約1年前、星野源の「Star」は、私を映像の世界へと連れて行ってくれました。\n\n大切な曲と大切な曲を混ぜてみようと思い制作した、マッシュアップです。",
+      "id" : "rockstar",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "Star - 星野源 / ロックスター - Tele",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "マッシュアップ制作",
+      "sections" : [
+
+      ],
+      "subtitle" : "Mashup",
+      "summary" : "スターとStarを混ぜてみた",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "ロックスター × Star | Tele × 星野源",
+      "tool" : "Logic Pro",
+      "videoURL" : "https://youtu.be/1tVYDC3l33Y",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
+        "motion"
+      ],
+      "description" : "この曲は星野源名義としては数少ないインスト曲のうちの一つで、聴くと懐かしさや憧れや、いろんな感情が押し寄せてくる不思議な曲です。それはまるで海を見つめた時のように。どこかに攫われそうになるくらいに。\n\nそんなこの曲で映像をつくりたいと思い、色と図形を中心に制作しました。結果、私がこの曲を聴いた時の心模様みたいなものが、映像として浮かび上がったような気がします。",
+      "id" : "sayonaranoumi",
+      "input" : "",
+      "metadata" : [
+
+      ],
+      "music" : "さようならのうみ(Instrumental) - 星野源",
+      "portrait" : false,
+      "projectType" : "自主制作",
+      "published" : true,
+      "role" : "モーションデザイン",
+      "sections" : [
+
+      ],
+      "subtitle" : "Motion Design",
+      "summary" : "色と図形、うみと季節",
+      "thumbnailSize" : "maxresdefault",
+      "thumbnailURL" : "",
+      "title" : "さようならのうみ(Instrumental) - 星野源",
+      "tool" : "Cavalry",
+      "videoURL" : "https://youtu.be/IMTd_mOalXw",
+      "year" : "2026"
+    },
+    {
+      "categories" : [
         "coding"
       ],
       "description" : "高速フーリエ変換のアドオンを使用し、リアルタイムで音楽を周波数ごとの大きさに変換して、その内の低音部分に反応して図形が現れます。\n\n図形の形や位置、大きさなどはランダム。かつ1フレームずつ座標が少しだけ動いたり、回転したりすることで、幾何学的な図形に不規則な動きを取り入れています。\n\nサカナクションのライブツアー、“透明” に行ってきて、サカナクション熱が冷めぬ内につくりました。",
